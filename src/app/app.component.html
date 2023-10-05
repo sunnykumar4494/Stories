@@ -1,0 +1,43 @@
+<h2>News Articles </h2>
+
+<mat-form-field class="example-full-width">
+  <mat-label>Enter ID like 37785191</mat-label>
+  <input type="text"
+         placeholder="Select ID "
+         aria-label="Select ID"
+         matInput
+         [formControl]="myControl"
+         [matAutocomplete]="auto">
+  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+      {{option}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+<button (click)="search()"><a class="btn btn-success">Search</a>
+</button>
+
+<div class="row">
+  <div class="test" style="display: contents;">
+    <div *ngFor="let story of _currentPageData" class="col-md-3">
+      <app-story [storyId] = "story" ></app-story>
+    </div>
+  </div>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item disabled">
+        <button (click)="Previous()" [ngClass]="FirstPage!=1 ? 'active' : 'disabled'" > <a class="page-link" tabindex="-1">Previous</a></button>
+      </li>
+      <li class="page-item"> <button (click)="pagination(FirstPage)"><a class="page-link">{{FirstPage}}</a></button></li>
+      <li class="page-item"> <button (click)="pagination(SecondPage)"><a class="page-link">{{SecondPage}}</a></button></li>
+      <li class="page-item"><button (click)="pagination(ThirdPage)"><a class="page-link">{{ThirdPage}}</a></button></li>
+      <li class="page-item">
+        <button (click)="Next()"> <a class="page-link" >Next</a></button>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+
+
+
